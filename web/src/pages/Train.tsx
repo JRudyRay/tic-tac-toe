@@ -38,7 +38,6 @@ export default function TrainPage() {
   const [status, setStatus] = useState<'ACTIVE' | 'FINISHED'>('ACTIVE');
   const [gameCount, setGameCount] = useState(0);
   const [losses, setLosses] = useState<number[]>([]);
-  const [lastLoss, setLastLoss] = useState<number>(Number.NaN);
   const [gameRecord, setGameRecord] = useState<GameRecord | null>(null);
   const [animating, setAnimating] = useState(false);
   const [layerDeltas, setLayerDeltas] = useState<Array<{ weights: number[][]; biases: number[] }>>([]);
@@ -164,7 +163,6 @@ export default function TrainPage() {
     setGameRecord(null);
     setLayerDeltas(network!.layers.map(() => ({ weights: [], biases: [] })));
     setAnimating(false);
-    setLastLoss(Number.NaN);
   };
   const runTeacherTraining = async (dataset: TrainingExample[], gamesToTrain: number, delayMs = 120, countGames = 0) => {
     if (!network) return 0;
@@ -209,7 +207,6 @@ export default function TrainPage() {
 
           // Update visualization after each batch
           setLayerDeltas(network.layers.map((_, idx) => network.getLayerDeltas(idx)));
-          setLastLoss(Math.max(loss, 1e-6));
 
           if (delayMs > 0) {
             await new Promise((resolve) => setTimeout(resolve, delayMs));
@@ -952,7 +949,6 @@ export default function TrainPage() {
                     layerSizes={[network.config.inputSize, ...network.config.hiddenLayers, network.config.outputSize]}
                     layerDeltas={layerDeltas}
                     animating={animating}
-                    loss={lastLoss}
                     forwardPassData={forwardPassData}
                   />
                 </div>

@@ -5,7 +5,6 @@ interface NetworkVizProps {
   layerSizes: number[];
   layerDeltas: Array<{ weights: number[][]; biases: number[] }>;
   animating: boolean;
-  loss: number;
   // New props for forward propagation animation
   forwardPassData?: {
     activations: number[][];  // Activation values for each layer
@@ -16,8 +15,7 @@ interface NetworkVizProps {
 export function NetworkVisualization({ 
   layerSizes, 
   layerDeltas, 
-  animating, 
-  loss,
+  animating,
   forwardPassData 
 }: NetworkVizProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
