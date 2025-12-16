@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #0f172a;
+  background: radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.12), transparent 25%),
+    radial-gradient(circle at 80% 0%, rgba(168, 85, 247, 0.14), transparent 28%),
+    #0b1021;
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  background: transparent;
+  color: #e2e8f0;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+/* Glassmorphic card styling */
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.shadow-glass {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
